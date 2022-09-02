@@ -13,4 +13,18 @@ const toggleSidebar = () => {
 </script>
 
 <template>
+  <p>Have a phone call:
+    <icon class="icon" icon="phone" />
+    <icon icon="filter" />
+  </p>
 </template>
+
+<style>
+.icon {
+  color: red;
+}
+
+.icon:hover {
+  color: seagreen
+}
+</style>

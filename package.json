@@ -9,11 +9,15 @@
     "type-check": "vue-tsc --noEmit"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.2.0",
+    "@fortawesome/free-solid-svg-icons": "^6.2.0",
+    "@fortawesome/vue-fontawesome": "^3.0.0-5",
     "@headlessui/vue": "^1.6.4",
     "@heroicons/vue": "^1.0.6",
     "pinia": "^2.0.14",
     "vue": "^3.2.36",
-    "vue-router": "^4.0.15"
+    "vue-router": "^4.0.15",
+    "vue-sidebar-menu": "^5.2.4"
   },
   "devDependencies": {
     "@types/node": "^16.11.36",

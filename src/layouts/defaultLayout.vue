@@ -1,6 +1,41 @@
+<script setup lang="ts">
+import TheSidebar from '~/components/TheSidebar.vue'
+import TheNavbar from '~/components/TheNavbar.vue'
+import ThePageHeader from '~/components/ThePageHeader.vue'
+import { ref, onMounted } from 'vue'
+import {
+  Dialog,
+  DialogOverlay,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuItems,
+  TransitionChild,
+  TransitionRoot,
+} from '@headlessui/vue'
+import { SearchIcon } from '@heroicons/vue/solid'
+
+const sidebarOpen = ref(false)
+const stateSidebar = ref(true)
+
+const toggleSidebar = () => {
+  stateSidebar.value = !stateSidebar.value
+
+}
+onMounted(() => {
+  onResize()
+  window.addEventListener('resize', onResize)
+})
+const onResize = () => {
+  if (window.innerWidth < 900) {
+    stateSidebar.value = false
+  }
+}
+</script>
+
 <template>
-  <div>
-    <TransitionRoot as="template" :show="sidebarOpen">
+  <div class="flex">
+    <!-- <TransitionRoot as="template" :show="sidebarOpen">
       <Dialog as="div" class="fixed inset-0 flex z-40 md:hidden" @close="sidebarOpen = false">
         <TransitionChild as="template" enter="transition-opacity ease-linear duration-300" enter-from="opacity-0"
           enter-to="opacity-100" leave="transition-opacity ease-linear duration-300" leave-from="opacity-100"
@@ -40,12 +75,11 @@
           </div>
         </TransitionChild>
         <div class="flex-shrink-0 w-14" aria-hidden="true">
-          <!-- Dummy element to force sidebar to shrink to fit close icon -->
         </div>
       </Dialog>
-    </TransitionRoot>
+    </TransitionRoot> -->
     <the-sidebar :isActive="stateSidebar" @toggleSidebar="toggleSidebar" />
-    <div :class="[stateSidebar ? 'md:ml-64' : 'md:ml-14', 'md:ml-64 flex flex-col flex-1 h-screen overflow-hidden']">
+    <div :class="['flex flex-col flex-1 h-screen overflow-hidden']">
       <the-navbar />
       <main class="flex-1">
         <div class="py-6 h-full">
@@ -66,38 +100,3 @@
     </div>
   </div>
 </template>
-
-<script setup>
-import TheSidebar from '~/components/TheSidebar.vue'
-import TheNavbar from '~/components/TheNavbar.vue'
-import ThePageHeader from '~/components/ThePageHeader.vue'
-import { ref, onMounted } from 'vue'
-import {
-  Dialog,
-  DialogOverlay,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuItems,
-  TransitionChild,
-  TransitionRoot,
-} from '@headlessui/vue'
-import { SearchIcon } from '@heroicons/vue/solid'
-
-const sidebarOpen = ref(false)
-const stateSidebar = ref(true)
-
-const toggleSidebar = () => {
-  stateSidebar.value = !stateSidebar.value
-
-}
-onMounted(() => {
-  onResize()
-  window.addEventListener('resize', onResize)
-})
-const onResize = () => {
-  if (window.innerWidth < 900) {
-    stateSidebar.value = false
-  }
-}
-</script>
